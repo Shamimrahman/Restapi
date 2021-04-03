@@ -83,6 +83,31 @@ app.get('/students/:id', async (req,res)=>{
 
 })
 
+//get imdividual student finish
+
+//Delete Student Data
+
+app.delete("/students/:id" ,async(req,res)=>{
+    try{
+        const _id=req.params.id
+        const delstu=await Student.findByIdAndDelete(_id)
+        if(!_id){
+            res.status(404)
+        }
+
+        else{
+            res.status(200).send(delstu)
+            console.log("Deleted")
+        }
+
+    }
+
+    catch(e){
+        res.status(500).send(e)
+    }
+
+})
+
 //connection
 
 app.listen(port,()=>[
