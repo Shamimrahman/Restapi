@@ -47,6 +47,17 @@ app.post("/students", async(req,res)=>{
       res.status(400).send(e)
     }
 })
+
+//add student end
+
+//get Student
+app.get("/students",async(req,res)=>{
+    const Studentdata=await Student.find()
+    res.send(Studentdata)
+})
+
+//get student end
+
 //connection
 
 app.listen(port,()=>[
