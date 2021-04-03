@@ -58,6 +58,31 @@ app.get("/students",async(req,res)=>{
 
 //get student end
 
+//get imdividual student
+
+app.get('/students/:id', async (req,res)=>{
+      
+   try{
+    const _id=req.params.id
+    const studentdata= await Student.findById(_id)
+
+    console.log(studentdata)
+
+    if(!studentdata){
+        res.status(404)
+    }
+    else{
+        res.status(200).send(studentdata)
+    }
+   }
+
+   catch(e){
+       res.status(400).send(e)
+   }
+
+
+})
+
 //connection
 
 app.listen(port,()=>[
