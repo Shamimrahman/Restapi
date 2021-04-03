@@ -107,7 +107,31 @@ app.delete("/students/:id" ,async(req,res)=>{
     }
 
 })
+//delete end
 
+//update
+
+app.patch('/students/:id',async (req,res)=>{
+    try{
+    const _id=req.params.id
+    const updatestu=await Student.findByIdAndUpdate(_id, req.body ,{
+        new:true
+    })
+
+     if(!_id){
+         res.status(404).send()
+     }
+
+     else{
+         res.status(200).send(updatestu)
+     }
+    }
+
+    catch(e){
+        res.status(500).send(e)
+    }
+
+})
 //connection
 
 app.listen(port,()=>[
